@@ -25,17 +25,18 @@ He buscado en la tienda de modulos de prestashop y existe un modulo para usar re
 
 ## Instalacion de dolibarr
 ```yaml
-dolibarr:
+  dolibarr:
     image: dolibarr/dolibarr:latest
+    container_name: dolibarr_container
     environment:
-      DOLLI_DB_HOST: ${DB_SERVER}
-      DOLLI_DB_USER: ${DB_USER}
-      DOLLI_DB_NAME: "dolibarrDB"
-      DOLLI_DB_PASSWORD: ${DB_PASSWD}
-      DOLLI_ADMIN_LOGIN: ${DOLLI_ADMIN_LOGIN}
-      DOLLI_ADMIN_PASSWORD: ${DOLLI_ADMIN_PASSWORD}
-      DOLLI_INSTALL_AUTO: 1
-      DOLLI_COMPANY_NAME: "Intento de empresa"
+      DOLI_DB_HOST: ${DB_SERVER}
+      DOLI_DB_USER: ${DB_USER}
+      DOLI_DB_NAME: ${DOLI_DB_NAME}
+      DOLI_DB_PASSWORD: ${DB_PASSWD}
+      DOLI_ADMIN_LOGIN: ${DOLI_ADMIN_LOGIN}
+      DOLI_ADMIN_PASSWORD: ${DOLI_ADMIN_PASSWORD}
+      DOLI_INSTALL_AUTO: 1
+      DOLI_COMPANY_NAME: "Intento de empresa"
     depends_on:
       mysql:
         condition: service_healthy
@@ -49,4 +50,11 @@ dolibarr:
       - dolibarr_docs:/var/www/documents
       - dolibarr_custom:/var/www/html/custom
 ```
-Aqui introduzco la parte del docker compose que hace referencia a dolibarr 
+Aqui introduzco la parte del docker compose que hace referencia a dolibarr, en el caso de dolibarr tuve que crear la base de datos manualmente mediante phpMyAdmin porque sino daba error de que no encontraba la base de datos y no salia de ahi, despues de hacer eso y ejecutar dolibarr sin ninguno de los volumenes creados y sin nada almacenado, aparece lo siguiente
+
+<img width="2736" height="1657" alt="imagen" src="https://github.com/user-attachments/assets/13c0adb9-a210-4298-81d0-7cc446a6a13d" />
+
+<img width="2743" height="1593" alt="imagen" src="https://github.com/user-attachments/assets/dcdc8048-71a3-4e40-a22b-4bf0ea436120" />
+
+
+
